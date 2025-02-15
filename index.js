@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URL)
 })
 
 
-const port=4000;
+const port=process.env.PORT || 4000;
 app.listen(port,()=>{console.log(`server connected at ${port}`)})
 
-app.use('/home',(req,res)=>{res.send("<h1>srinath</h1>")})
+app.use('/',(req,res)=>{res.send("<h1>Hi! This is Srinath</h1>")})
