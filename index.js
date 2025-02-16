@@ -6,8 +6,12 @@ const bodyParser=require('body-parser');
 const firmRoutes=require('./routes/firmRoutes')
 const productRoutes=require('./routes/productRoutes');
 const path=require('path');
+const cors=require('cors');
 
 const app=express()
+const port=process.env.PORT || 4000;
+
+app.use(cors())
 app.use(bodyParser.json());
 app.use('/vendor',vendorRoutes);//use the models,routers,controllers 
 app.use('/firm',firmRoutes);
@@ -20,8 +24,6 @@ mongoose.connect(process.env.MONGO_URL)
 .catch((error)=>{console.log(error);
 })
 
-
-const port=process.env.PORT || 4000;
 app.listen(port,()=>{console.log(`server connected at ${port}`)})
 
-app.use('/',(req,res)=>{res.send("<h1>Hi! This is Srinath</h1>")})
+app.use('/info',(req,res)=>{res.send("<h1>Hi! This is Srinath</h1>")})
