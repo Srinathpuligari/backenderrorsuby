@@ -1,12 +1,16 @@
 
 const Product=require("../models/Product");
 const multer=require("multer");
-const Firm=require('../models/Firm')
+const Firm=require('../models/Firm');
+const path = require("path"); // Add this line
+
 
 const storage = multer.diskStorage({
-    destination: 'uploads/', // Folder to store images
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, '../uploads')); // Use absolute path
+    },
     filename: (req, file, cb) => {
-        cb(null, Date.now() +Path.extname(file.originalname)); // Unique filename
+        cb(null, Date.now() + path.extname(file.originalname));
     }
 });
 
