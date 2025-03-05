@@ -78,11 +78,12 @@ const getVendorById = async (req, res) => {
         const vendor = await Vendor.findById(vendorId).populate('firm');
         if (!vendor) {
             return res.status(404).json({ error: 'Vendor not found' });
-        }
+        };
+        
 
         if (vendor.firm.length > 0) {
             const vendorFirmId = vendor.firm[0]._id;
-            return res.status(200).json({ vendorFirmId });
+            return res.status(200).json({vendorId:vendor._id,vendorFirmId,vendor:vendor});
         } else {
             return res.status(200).json({ message: 'Vendor has no associated firm' });
         }
