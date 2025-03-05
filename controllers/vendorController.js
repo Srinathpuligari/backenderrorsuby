@@ -78,7 +78,7 @@ const getVendorById = async (req, res) => {
         const vendor = await Vendor.findById(vendorId).populate('firm');
         if (!vendor) {
             return res.status(404).json({ error: 'Vendor not found' });
-        };
+        }
         
 
         if (vendor.firm.length > 0) {
